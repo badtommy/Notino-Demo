@@ -12,7 +12,7 @@ var selfBaseAddress = builder.Configuration["ASPNETCORE_URLS"]?
     ?? "http://127.0.0.1:5000";
 
 builder.AddSqlServerClient(connectionName: "sqldb");
-builder.Services.AddOpenApi();
+//builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient(nameof(TrafficSimulator), client =>
 {
@@ -32,7 +32,7 @@ app.UseExceptionLogging();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    //app.MapOpenApi();
 }
 
 app.MapGet("/", () => Results.Ok(new
