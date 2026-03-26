@@ -77,6 +77,20 @@ BEGIN
     );
 END",
                 @"
+IF OBJECT_ID('dbo.Logs', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Logs
+    (
+        Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        [Timestamp] DATETIME2 NOT NULL,
+        [Level] NVARCHAR(16) NULL,
+        [Message] NVARCHAR(MAX) NULL,
+        [Exception] NVARCHAR(MAX) NULL,
+        [Properties] NVARCHAR(MAX) NULL,
+        ServiceName NVARCHAR(256) NULL
+    );
+END",
+                @"
 IF NOT EXISTS (SELECT 1 FROM dbo.Products)
 BEGIN
     INSERT INTO dbo.Products (Id, Name, Category, Price, Stock, IsActive)
